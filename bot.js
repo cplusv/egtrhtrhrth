@@ -40,37 +40,46 @@ function initial() {
         month: 0,
         year: 0,
         full: 0,
-        info2: 0
+        info2: 0,
+        notif: false
 
     };
 }
 referal_bt.use(session({ initial }));
-
+var working = true
 referal_bt.command("start", async (ctx) => {
-    await mongoClient.connect();
-    const db = mongoClient.db("workers");
-    const collection = db.collection("infos");
-    console.log(ctx.message.from.id)
-    if (await collection.findOne({ id: Number(ctx.message.from.id) })) {
-        await ctx.sendMessage("Вы уже в тиме")
-    } else {
 
-        await ctx.sendMessage("Здравствуйте, рады приветствовать вас в Repulse Team! Оставьте заявку на вступление в команду 🏁", {
-            "reply_markup": {
-                "keyboard": [["📝 Подать заявку"]],
-                resize_keyboard: true
+   // else{
+        await mongoClient.connect();
+        const db = mongoClient.db("workers");
+        const collection = db.collection("infos");
+        console.log(ctx.message.from.id)
+        if (await collection.findOne({ id: Number(ctx.message.from.id) })) {
+            await ctx.sendMessage("Вы уже в тиме")
+            if(working == false){
+                ctx.sendMessage("Бот остановлен приходите в 10:00")
             }
-        },)
-    }
+        } else {
+    
+            await ctx.sendMessage("Здравствуйте, рады приветствовать вас в Repulse Team! Оставьте заявку на вступление в команду 🏁", {
+                "reply_markup": {
+                    "keyboard": [["📝 Подать заявку"]],
+                    resize_keyboard: true
+                }
+            },)
+        }
+    //}
+
+
+
+
+
+
+
+
+
 
 })
-
-
-
-
-
-
-
 
 
 
@@ -119,7 +128,7 @@ final.on("text", async (ctx) => {
     ctx.session.time = ctx.message.text
     await ctx.sendMessage("📬 Ваша заявка на регистрацию будет рассмотрена в ближайшее время администрацией проекта!")
     await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\n\nSID/${ctx.message.from.id}`, {
-        chat_id: -624328772,
+        chat_id: -851561689,
         reply_markup: {
             inline_keyboard: [
                 [
@@ -169,7 +178,32 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
 
 
     })
+        cron.schedule("00 10 * * *", () => {
+            ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @casino_rotebal ]',{chat_id: ctx.session.normalize,
+            
+                "reply_markup": {
+                    "keyboard": [["🧑🏼‍💻 Профиль","💻О проекте"]],
+                    resize_keyboard: true
+                }
+            
+            });
+            working = true
+        });
+        cron.schedule("00 23 * * *", () => {
+            ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!',{chat_id: ctx.session.normalize,
+            
+                "reply_markup": {
+                    "keyboard": [["🛑 Бот остановлен"]],
+                    resize_keyboard: true
+                }
+            
+            });
+            working = false
+        });
 
+    if(working == false){
+        ctx.sendMessage("Бот остановлен приходите в 10:00")
+    }
 })
 
 
@@ -200,6 +234,7 @@ referal_bt.hears("💻О проекте", async (ctx) => {
 
 referal_bt.hears("🧑🏼‍💻 Профиль", async (ctx) => {
 
+    
 
     await mongoClient.connect();
     const db = mongoClient.db("workers");
@@ -240,7 +275,7 @@ referal_bt.hears("📝 Подать заявку", async (callbackQuery) => {
     if (await collection.findOne({ id: Number(callbackQuery.message.from.id) })) {
         callbackQuery.sendMessage("Вы уже в тиме!",{
             "reply_markup": {
-                "keyboard": [["Профиль🖥️"], ["О проекте💻"]],
+                "keyboard": [["🧑🏼‍💻 Профиль"], ["💻О проекте"]],
                 resize_keyboard: true
             }
         })
@@ -338,21 +373,10 @@ const cron = require('node-cron');
 bot.use(session({ initial: initial22 }));
 
 
-var working = true
+
 bot.command("start", async (ctx) => {
 
-    cron.schedule("00 10 * * *", () => {
-        ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @casino_rotebal ]');
-        working = true
-    });
-    cron.schedule("00 23 * * *", () => {
-        ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!');
-        working = false
-    });
-    if(working == false){
-        ctx.sendMessage("Бот остановлен приходите в 10:00")
-    }
-    else{
+
         await mongoClient.connect();
         const db = mongoClient.db("workers");
         const collection = db.collection("infos");
@@ -373,7 +397,7 @@ bot.command("start", async (ctx) => {
                 resize_keyboard: true
             }
         })
-    }
+    
 
 
     
