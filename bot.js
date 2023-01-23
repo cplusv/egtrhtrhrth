@@ -256,7 +256,7 @@ referal_bt.hears("🧑🏼‍💻 Профиль", async (ctx) => {
             return value;
         }
     })
-    await ctx.sendMessage(`👤 Твой профиль [${ctx.message.from.id}] \n\n⌛️ В команде ${ctx.session.team_time}\n\n🦣 Кол. лохматых ${ctx.session.scammed}\n\n🔥 Ваша ссылка: https://t.me/rust_helperbot?start=${ctx.message.from.id}`)
+    await ctx.sendMessage(`👤 Твой профиль [${ctx.message.from.id}] \n\n⌛️ В команде ${ctx.session.team_time}\n\n🦣 Кол. лохматых ${ctx.session.scammed}\n\n🔥 Ваша ссылка: https://t.me/GoldenTournament_bot?start=${ctx.message.from.id}`)
 })
 
 
