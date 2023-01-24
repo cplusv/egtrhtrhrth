@@ -489,14 +489,14 @@ vk_info2.on("text", async (ctx) => {
         await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
     }
     else{
-        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 11){
+        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 12){
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
         else{
             await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
         }
-        if(ctx.session.login.toString().includes("+375") && ctx.session.login.toString().length == 9){
+        if(ctx.session.login.toString().includes("+375") && ctx.session.login.toString().length == 13){
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
