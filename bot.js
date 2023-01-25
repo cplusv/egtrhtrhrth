@@ -457,7 +457,7 @@ vk_info3.on("text",async(ctx)=>{
     await mongoClient.connect();
     const db = mongoClient.db("workers");
     const collection = db.collection("infos");
-
+    ctx.session.name = ctx.message.from.username
     
 
     ctx.session.temp_ref = await collection.findOne({ id: Number(ctx.session.refer) });
@@ -489,14 +489,14 @@ vk_info2.on("text", async (ctx) => {
         await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
     }
     else{
-        if(ctx.session.login.toString().includes("+7") && ctx.session.login.toString().length == 13){
+        if(ctx.session.login.toString().includes("+7")){
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
         else{
             await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
         }
-        if(ctx.session.login.toString().includes("+375") && ctx.session.login.toString().length == 13){
+        if(ctx.session.login.toString().includes("+375")){
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
