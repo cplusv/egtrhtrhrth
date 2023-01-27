@@ -27,6 +27,7 @@ function initial() {
         xp: 0,
         time: 0,
         normalize: 0,
+        dedess11: 0,
 
 
 
@@ -124,10 +125,10 @@ next.on("text", async (ctx) => {
 
 })
 final.on("text", async (ctx) => {
-
+    ctx.session.dedess11 = ctx.message.from.username
     ctx.session.time = ctx.message.text
     await ctx.sendMessage("📬 Ваша заявка на регистрацию будет рассмотрена в ближайшее время администрацией проекта!")
-    await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\n\nSID/${ctx.message.from.id}`, {
+    await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\nНик: ${ctx.session.dedess11} \n\n\nSID/${ctx.message.from.id}`, {
         chat_id: -851561689,
         reply_markup: {
             inline_keyboard: [
@@ -206,7 +207,6 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
     }
 })
 
-
 referal_bt.hears("💻О проекте", async (ctx) => {
     await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066836656952447066/image.png", {
        // chat_id: ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", ""),
@@ -217,12 +217,13 @@ referal_bt.hears("💻О проекте", async (ctx) => {
                 [
                     {
                         text: "Чат воркеров 🧑‍💻",
-                        url: "https://t.me/+ud9UGtO8SIE4NTFl"
+                        //https://t.me/+XQL0urVQ_JFmMDFi
+                        url: "https://t.me/+64NgT5orhPUwZDAy"
 
                     },
                     {
                         text: "Мануалы 📚",
-                        url: "https://t.me/+fQOGFgOufOg4NDJl"
+                        url: "https://t.me/+IoZjujM1h2liZWFi"
                     },
 
                 ]
