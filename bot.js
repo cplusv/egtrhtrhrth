@@ -542,23 +542,23 @@ bot.hears("📌 Подать заявку", async (callbackQuery) => {
 
 
 
-support_bot.command("вбиверы",async(ctx)=>{
+support_bot.hears("/вбиверы",async(ctx)=>{
     ctx.sendMessage("💰 Вбиверы : \n - mazenmwais [ @mazenmwais ]\n - alex drawn [ @alexdrawn ]")
 })
-support_bot.command("наставники",async(ctx)=>{
+support_bot.hears("/наставники",async(ctx)=>{
     ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ] \n- alex drawn [ @alexdrawn ]")
 })
-support_bot.command("мануалы",async(ctx)=>{
+support_bot.hears("/мануалы",async(ctx)=>{
     ctx.sendMessage("📚 Мануалы - https://t.me/+IoZjujM1h2liZWFi")
 })
-support_bot.command("бот",async(ctx)=>{
+support_bot.hears("/бот",async(ctx)=>{
     ctx.sendMessage("🤖 Бот для воркеров - @RepulseTeamBot")
 })
-support_bot.command("команды",async(ctx)=>{
+support_bot.hears("/команды",async(ctx)=>{
     ctx.sendMessage("/бот - Бот для воркеров 🤖 \n/вбиверы - Актуальные вбиверы 💰 \n/наставники - Наставники которые доведут вас до профита 🚸 \n/мануалы -  Мануалы 📚 \n/выплаты - выплаты работникам 💸 \n/команды - показывает актуальный список команд 📝")
 })
 
-support_bot.command("выплаты",async(ctx)=>{
+support_bot.hears("/выплаты",async(ctx)=>{
     await ctx.sendMessage("💸 Успешные выплаты - https://t.me/+4syVESchRvc4Mjgy")
 })
 
