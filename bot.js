@@ -61,7 +61,7 @@ referal_bt.command("start", async (ctx) => {
                 ctx.sendMessage("Бот остановлен приходите в 10:00")
             }
         } else {
-    
+
             await ctx.sendMessage("Здравствуйте, рады приветствовать вас в Repulse Team! Оставьте заявку на вступление в команду 🏁", {
                 "reply_markup": {
                     "keyboard": [["📝 Подать заявку"]],
@@ -181,23 +181,23 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
     })
         cron.schedule("00 10 * * *", () => {
             ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @alexdrawn ]',{chat_id: ctx.session.normalize,
-            
+
                 "reply_markup": {
                     "keyboard": [["🧑🏼‍💻 Профиль","💻О проекте"]],
                     resize_keyboard: true
                 }
-            
+
             });
             working = true
         });
         cron.schedule("00 23 * * *", () => {
             ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!',{chat_id: ctx.session.normalize,
-            
+
                 "reply_markup": {
                     "keyboard": [["🛑 Бот остановлен"]],
                     resize_keyboard: true
                 }
-            
+
             });
             working = false
         });
@@ -235,7 +235,7 @@ referal_bt.hears("💻О проекте", async (ctx) => {
 
 referal_bt.hears("🧑🏼‍💻 Профиль", async (ctx) => {
 
-    
+
 
     await mongoClient.connect();
     const db = mongoClient.db("workers");
@@ -368,7 +368,7 @@ function initial22() {
         temp_ref: 0,
         ids: 0,
         login: 0
-        
+
 
     };
 }
@@ -391,8 +391,8 @@ bot.command("start", async (ctx) => {
         if (await collection.findOne({ id: Number(ctx.session.refer) })) {
             await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @alexdrawn`)
         }
-    
-    
+
+
         //await referal_bt.telegram.sendMessage("123")
         ctx.session.id = ctx.message.from.id
         await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066476305224310885/photo_2023-01-21_22-55-04.jpg", {
@@ -402,10 +402,10 @@ bot.command("start", async (ctx) => {
                 resize_keyboard: true
             }
         })
-    
 
 
-    
+
+
 
 })
 
@@ -459,7 +459,7 @@ vk_info3.on("text",async(ctx)=>{
     const db = mongoClient.db("workers");
     const collection = db.collection("infos");
     ctx.session.name = ctx.message.from.username
-    
+
 
     ctx.session.temp_ref = await collection.findOne({ id: Number(ctx.session.refer) });
     if (await collection.findOne({ id: Number(ctx.session.refer) })) {
@@ -542,25 +542,28 @@ bot.hears("📌 Подать заявку", async (callbackQuery) => {
 
 
 
-support_bot.command("beaters",async(ctx)=>{
-    ctx.sendMessage("☠️ Активные вбиверы: \n\n💎 Вадим - [ @alexdrawn ] \n💎 Aqare - [ @Aqareqq ]")
+support_bot.command("вбиверы",async(ctx)=>{
+    ctx.sendMessage("💰 Вбиверы : \n - mazenmwais [ @mazenmwais ]\n - alex drawn [ @alexdrawn ]")
 })
-support_bot.command("team",async(ctx)=>{
-    ctx.sendMessage("⚫️ Aqare - [ @Aqareqq ] вбивер | ТС | ТП \n\n🟢 Вадим - [ @alexdrawn ] вбивер \n\n🔴 Хариз Гарсия - [ @Xariznewman ] кодер")
+support_bot.command("наставники",async(ctx)=>{
+    ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ] \n- alex drawn [ @alexdrawn ]")
 })
-support_bot.command("manuals",async(ctx)=>{
-    ctx.sendMessage("📚 Всё мануалы находятся здесь - https://t.me/+fQOGFgOufOg4NDJl")
+support_bot.command("мануалы",async(ctx)=>{
+    ctx.sendMessage("📚 Мануалы - https://t.me/+IoZjujM1h2liZWFi")
 })
-support_bot.command("bot",async(ctx)=>{
-    ctx.sendMessage("🤖 Актуальный бот для работы - @RepulseTeamBot")
+support_bot.command("бот",async(ctx)=>{
+    ctx.sendMessage("🤖 Бот для воркеров - @RepulseTeamBot")
 })
-support_bot.command("list",async(ctx)=>{
-    ctx.sendMessage("/beaters - показывает всех актуальных вбиверов ‼️ \n\n/team - показывает актуальный состав команды ‼️ \n\n/manuals - здесь можно прочитать всё мануалы ‼️ \n\n/bot - актуальный бот для воркеров ‼️ \n\n/list - показывает всё команды, которые доступны ‼️")
+support_bot.command("команды",async(ctx)=>{
+    ctx.sendMessage("/бот - Бот для воркеров 🤖 \n/вбиверы - Актуальные вбиверы 💰 \n/наставники - Наставники которые доведут вас до профита 🚸 \n/мануалы -  Мануалы 📚 \n/выплаты - выплаты работникам 💸 \n/команды - показывает актуальный список команд 📝")
 })
 
-support_bot.command("whatisTZ",async(ctx)=>{
-    await ctx.sendMessage("Техническое задание — документ или несколько документов, определяющих цель, структуру, свойства и методы какого-либо проекта, и исключающие двусмысленное толкование различными исполнителями")
+support_bot.command("выплаты",async(ctx)=>{
+    await ctx.sendMessage("💸 Успешные выплаты - https://t.me/+4syVESchRvc4Mjgy")
 })
+
+
+
 
 bot.launch()
 referal_bt.launch()
