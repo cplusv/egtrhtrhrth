@@ -218,12 +218,12 @@ referal_bt.hears("💻О проекте", async (ctx) => {
                     {
                         text: "Чат воркеров 🧑‍💻",
                         //https://t.me/+XQL0urVQ_JFmMDFi
-                        url: "https://t.me/+64NgT5orhPUwZDAy"
+                        url: "https://t.me/+kPWlkm3Q0y81NzIy"
 
                     },
                     {
                         text: "Мануалы 📚",
-                        url: "https://t.me/+IoZjujM1h2liZWFi"
+                        url: "https://t.me/+CQoNmQ03qIs1OWM6"
                     },
 
                 ]
