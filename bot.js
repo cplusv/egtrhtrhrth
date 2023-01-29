@@ -549,7 +549,7 @@ support_bot.hears("/наставники",async(ctx)=>{
     ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ] \n- alex drawn [ @alexdrawn ]")
 })
 support_bot.hears("/мануалы",async(ctx)=>{
-    ctx.sendMessage("📚 Мануалы - https://t.me/+IoZjujM1h2liZWFi")
+    ctx.sendMessage("📚 Мануалы - https://t.me/+CQoNmQ03qIs1OWM6")
 })
 support_bot.hears("/бот",async(ctx)=>{
     ctx.sendMessage("🤖 Бот для воркеров - @RepulseTeamBot")
@@ -559,7 +559,7 @@ support_bot.hears("/команды",async(ctx)=>{
 })
 
 support_bot.hears("/выплаты",async(ctx)=>{
-    await ctx.sendMessage("💸 Успешные выплаты - https://t.me/+4syVESchRvc4Mjgy")
+    await ctx.sendMessage("💸 Успешные выплаты - https://t.me/+G_1DA46KBQsxYzY6")
 })
 
 
