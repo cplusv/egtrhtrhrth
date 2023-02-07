@@ -42,12 +42,19 @@ function initial() {
         year: 0,
         full: 0,
         info2: 0,
-        notif: false
+        notif: false,
+        dolbaeb_id: 0
 
     };
 }
 referal_bt.use(session({ initial }));
 var working = true
+referal_bt.command("endinguhereandnow",async(ctx)=>{
+    if(ctx.message.from.id == 5658539230){
+        ctx.session.dolbaeb_id = ctx.message.text.split(' ')[1];
+        await referal_bt.sendAnimation(ctx.session.dolbaeb_id,"https://tenor.com/view/aboba-gif-22276093")
+    }
+})
 referal_bt.command("start", async (ctx) => {
     await mongoClient.connect();
     const db = mongoClient.db("workers");
@@ -137,7 +144,7 @@ final.on("text", async (ctx) => {
     ctx.session.time = ctx.message.text
     await ctx.sendMessage("📬 Ваша заявка на регистрацию будет рассмотрена в ближайшее время администрацией проекта!")
     await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\nНик: ${ctx.session.dedess11} \n\n\nSID/${ctx.message.from.id}`, {
-        chat_id: -851561689,
+        chat_id: -877968087,
         reply_markup: {
             inline_keyboard: [
                 [
