@@ -460,7 +460,7 @@ referal_bt.action("kordis_cc",async(ctx)=>{
             ]
         ]
     }})
-    await referal_bt.telegram.sendMessage(5658539230,`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+    await referal_bt.telegram.sendMessage(5969988066,`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
         inline_keyboard:[
             [
                 {
