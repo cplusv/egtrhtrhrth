@@ -305,8 +305,149 @@ referal_bt.action("kordis",async(ctx)=>{
         ]
     }})
 })
+
+
+
+
+
+
+
+
+
+
+
+
+referal_bt.action("Xalex_cc",async(ctx)=>{
+    await ctx.editMessageText("Заявка успешно отправлена @Xalex_st\nожидайте!",{reply_markup:{
+        inline_keyboard:[
+            [
+                {
+                    text:"Назад",
+                    callback_data:"nastv"
+                }
+            ]
+        ]
+    }})
+    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+        chat_id: 956297102,
+        inline_keyboard:[
+            [
+                {
+                    text:"Принять",
+                    callback_data:"xalex_cc_good"
+                },
+                {
+                    text:"Отклонить",
+                    callback_data:"xalex_cc_bad"
+                }
+                
+            ]
+        ],
+        
+    }})
+})
+referal_bt.action("xalex_cc_good",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @Xalex_st принял Вашу заявку! Напишите ему в личные сообщения!",{chat_id:ctx.session.normalizes2})
+    
+})
+referal_bt.action("xalex_cc_bad",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @Xalex_st отклонил Вашу заявку!",{chat_id:ctx.session.normalizes2})
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+referal_bt.action("mazenmwais",async(ctx)=>{
+    await ctx.editMessageText("Заявка успешно отправлена @mazenmwais\nожидайте!",{reply_markup:{
+        inline_keyboard:[
+            [
+                {
+                    text:"Назад",
+                    callback_data:"nastv"
+                }
+            ]
+        ]
+    }})
+    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+        chat_id: 5986051945,
+        inline_keyboard:[
+            [
+                {
+                    text:"Принять",
+                    callback_data:"mazenmwais_cc_good"
+                },
+                {
+                    text:"Отклонить",
+                    callback_data:"mazenmwais_cc_bad"
+                }
+                
+            ]
+        ],
+        
+    }})
+})
+referal_bt.action("mazenmwais_cc_good",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @mazenmwais принял Вашу заявку! Напишите ему в личные сообщения!",{chat_id:ctx.session.normalizes2})
+    
+})
+referal_bt.action("mazenmwais_cc_bad",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @mazenmwais отклонил Вашу заявку!",{chat_id:ctx.session.normalizes2})
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 referal_bt.action("kordis_cc",async(ctx)=>{
-    await ctx.sendMessage("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
+    await ctx.editMessageText("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
         inline_keyboard:[
             [
                 {
@@ -425,7 +566,7 @@ referal_bt.hears("📝 Подать заявку", async (callbackQuery) => {
     if (await collection.findOne({ id: Number(callbackQuery.message.from.id) })) {
         callbackQuery.sendMessage("Вы уже в тиме!", {
             "reply_markup": {
-                "keyboard": [["🧑🏼‍💻 Профиль"], ["💻О проекте"]],
+                "keyboard": [["🧑🏼‍💻 Профиль"], ["💻О проекте"],["🧑‍🏫 Наставники"]],
                 resize_keyboard: true
             }
         })
