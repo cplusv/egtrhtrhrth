@@ -28,7 +28,8 @@ function initial() {
         time: 0,
         normalize: 0,
         dedess11: 0,
-
+        namesss: 0,
+        normalizes2: 0,
 
 
 
@@ -196,6 +197,8 @@ referal_bt.action("agggrrrree321321", async (ctx) => {
     })
 })
 referal_bt.hears("🧑‍🏫 Наставники",async(ctx)=>{
+    ctx.session.namesss = ctx.message.from.username
+    ctx.session.ids = ctx.message.from.id
     await ctx.sendMessage("👨‍🏫 Наставники:\n\nВыбирайте наставника на вкус и цвет, полагаясь на процентную ставку и количество профитов с которых будет изъят процент.",{reply_markup:{
         inline_keyboard:[
             [
@@ -301,6 +304,50 @@ referal_bt.action("kordis",async(ctx)=>{
             ]
         ]
     }})
+})
+referal_bt.action("kordic_cc",async(ctx)=>{
+    await ctx.editMessageText("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
+        inline_keyboard:[
+            [
+                {
+                    text:"Назад",
+                    callback_data:"nastv"
+                }
+            ]
+        ]
+    }})
+    await ctx.sendMessage(`@${ctx.session.namesss}чувака который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+        inline_keyboard:[
+            [
+                {
+                    text:"Принять",
+                    callback_data:"kordic_cc_good"
+                },
+                {
+                    text:"Отклонить",
+                    callback_data:"kordic_cc_bad"
+                }
+                
+            ]
+        ],
+        chat_id: 5658539230
+    }})
+})
+referal_bt.action("kordic_cc_good",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @IM_KORDIS принял Вашу заявку! Напишите ему в личные сообщения!",{chat_id:ctx.session.normalizes2})
+    
+})
+referal_bt.action("kordic_cc_bad",async(ctx)=>{
+    await ctx.deleteMessage()
+    var urlRegex2 = /(\bSID\/[-A-Z0-9+&@#\/%=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    ctx.session.spec = ctx.update.callback_query.message.text
+    ctx.session.normalizes2 = ((ctx.session.spec.match(urlRegex2)).toString()).replaceAll("SID/", "")
+    await ctx.sendMessage("Наставник!\n\nНаставник @IM_KORDIS отклонил Вашу заявку!",{chat_id:ctx.session.normalizes2})
+    
 })
 referal_bt.hears("💻О проекте", async (ctx) => {
     await ctx.sendPhoto("https://cdn.discordapp.com/attachments/1048351055957733406/1066836656952447066/image.png", {
