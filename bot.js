@@ -306,7 +306,7 @@ referal_bt.action("kordis",async(ctx)=>{
     }})
 })
 referal_bt.action("kordic_cc",async(ctx)=>{
-    await ctx.editMessageText("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
+    await ctx.sendMessage("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
         inline_keyboard:[
             [
                 {
@@ -316,7 +316,7 @@ referal_bt.action("kordic_cc",async(ctx)=>{
             ]
         ]
     }})
-    await ctx.sendMessage(`@${ctx.session.namesss}чувака который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
         inline_keyboard:[
             [
                 {
