@@ -148,6 +148,7 @@ next.on("text", async (ctx) => {
 final.on("text", async (ctx) => {
     ctx.session.dedess11 = ctx.message.from.username
     ctx.session.time = ctx.message.text
+    ctx.sendMessage()
     await ctx.sendMessage("📬 Ваша заявка на регистрацию будет рассмотрена в ближайшее время администрацией проекта!")
     await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\nНик: ${ctx.session.dedess11} \n\n\nSID/${ctx.message.from.id}`, {
         chat_id: -877968087,
@@ -333,8 +334,7 @@ referal_bt.action("Xalex_cc",async(ctx)=>{
             ]
         ]
     }})
-    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
-        chat_id: 956297102,
+    await referal_bt.telegram.sendMessage(956297102,`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
         inline_keyboard:[
             [
                 {
@@ -348,7 +348,6 @@ referal_bt.action("Xalex_cc",async(ctx)=>{
                 
             ]
         ],
-        
     }})
 })
 referal_bt.action("xalex_cc_good",async(ctx)=>{
@@ -396,8 +395,7 @@ referal_bt.action("mazenmwais_cc",async(ctx)=>{
             ]
         ]
     }})
-    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
-        chat_id: 5986051945,
+    await referal_bt.telegram.sendMessage(5986051945,`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
         inline_keyboard:[
             [
                 {
@@ -462,8 +460,7 @@ referal_bt.action("kordis_cc",async(ctx)=>{
             ]
         ]
     }})
-    await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
-        chat_id: 5658539230,
+    await referal_bt.telegram.sendMessage(5658539230,`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
         inline_keyboard:[
             [
                 {
@@ -477,7 +474,6 @@ referal_bt.action("kordis_cc",async(ctx)=>{
                 
             ]
         ],
-        
     }})
 })
 referal_bt.action("kordic_cc_good",async(ctx)=>{
@@ -704,8 +700,8 @@ bot.command("start", async (ctx) => {
 
 })
 
-bot.command("getid", async (ctx) => {
-    await ctx.sendMessage(ctx.message)
+referal_bt.command("getid", async (ctx) => {
+    console.log(ctx.message)
 })
 bot.hears("🎗️ Алея славы", async (ctx) => {
     await ctx.sendMessage("I Season \n🥇 - Just \n=================== \nII Season 🥇 - LightsToMotion \n🥈 - Vollent Gaming \n🥉 - SakuraBand \n=================== \nIII Season \n🥇 - DRAGAMING \n🥈 - SLEEP_SO2 \n🥉 - EZZY ESPORTS \n=================== \nIV Season \n🥇 - Feeling Team \n🥈 - ATD Squad \n🥉 - DEADLY SQUAD GAMING \n=================== \nV Season \n🥇 - Feeling Team \n🥈 -  Ninja Team \n🥉 - AndEagers \n=================== \nVI Season \n🥇 - MoonTeam \n🥈 -  The Scary Rovers \n🥉 -  ATD Squad \n=================== \nVII Season \n🥇 - Seven Dragons \n🥈 - UpUp esports \n🥉 - AndEagers \n=================== \nVIII Season \n🥇 -  Team KingWin \n🥈 - Seven Dragons \n=================== \nIX Season \n🥇 - Appeasers \n🥈 - AndEagers \n🥉 - Favourites \n=================== \nX Season \n🥇 - BIT eSports \n=================== \nXI Season \n🥇 - Sinta Gamma \n🥈 - Team Carnage \n🥉 - Team Resurgens \n=================== \nXII Season \n🥇 - LightForces eSports \n🥈 -  ATD Squad \n🥉 -  Billers eSports \n=================== \nXIII Season \n🥇 - Team VaVilon \n🥈 - Team KingWin \n🥉 - Domination Over Time \n \n=================== \nArdoUr Season")
