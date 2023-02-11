@@ -380,7 +380,7 @@ referal_bt.action("xalex_cc_bad",async(ctx)=>{
 
 
 
-referal_bt.action("mazenmwais",async(ctx)=>{
+referal_bt.action("mazenmwais_cc",async(ctx)=>{
     await ctx.editMessageText("Заявка успешно отправлена @mazenmwais\nожидайте!",{reply_markup:{
         inline_keyboard:[
             [
