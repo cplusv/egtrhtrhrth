@@ -317,6 +317,7 @@ referal_bt.action("kordic_cc",async(ctx)=>{
         ]
     }})
     await ctx.sendMessage(`@${ctx.session.namesss} чувак который хочет взять в наствникии, хочет взять вас в наставники, что делаем? 🤔\n\nSID/${ctx.session.ids}`,{reply_markup:{
+        chat_id: 5658539230,
         inline_keyboard:[
             [
                 {
@@ -330,7 +331,7 @@ referal_bt.action("kordic_cc",async(ctx)=>{
                 
             ]
         ],
-        chat_id: 5658539230
+        
     }})
 })
 referal_bt.action("kordic_cc_good",async(ctx)=>{
