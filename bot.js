@@ -68,7 +68,7 @@ referal_bt.command("start", async (ctx) => {
         } else {
             console.log(ctx.message.from.id)
             if (await collection.findOne({ id: Number(ctx.message.from.id) })) {
-            await sendMessage.sendMessage("Вы уже в тиме!", {
+            await ctx.sendMessage("Вы уже в тиме!", {
                     "reply_markup": {
                         "keyboard": [["🧑🏼‍💻 Профиль"], ["💻О проекте"],["🧑‍🏫 Наставники"]],
                         resize_keyboard: true
