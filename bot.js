@@ -305,7 +305,7 @@ referal_bt.action("kordis",async(ctx)=>{
         ]
     }})
 })
-referal_bt.action("kordic_cc",async(ctx)=>{
+referal_bt.action("kordis_cc",async(ctx)=>{
     await ctx.sendMessage("Заявка успешно отправлена @IM_KORDIS\nожидайте!",{reply_markup:{
         inline_keyboard:[
             [
