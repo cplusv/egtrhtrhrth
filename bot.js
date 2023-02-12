@@ -216,12 +216,6 @@ referal_bt.hears("🧑‍🏫 Наставники",async(ctx)=>{
             ],
             [
                 {
-                    text:"Xalex",
-                    callback_data:"Xalex"
-                }
-            ],
-            [
-                {
                     text:"kordis",
                     callback_data:"kordis"
                 }
