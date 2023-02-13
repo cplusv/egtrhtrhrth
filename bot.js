@@ -5,7 +5,7 @@ const { session } = require("grammy");
 const dotenv = require("dotenv").config()
 
 const referal_bt = new Telegraf(process.env.TG_WORK_TOKEN)
-
+//-877968087    
 const MongoClient = require("mongodb").MongoClient;
 const mongoClient = new MongoClient("mongodb+srv://killer228:oposapoA@cluster0.bgowkox.mongodb.net/?retryWrites=true&w=majority");
 function makeid(length) {
@@ -148,7 +148,6 @@ next.on("text", async (ctx) => {
 final.on("text", async (ctx) => {
     ctx.session.dedess11 = ctx.message.from.username
     ctx.session.time = ctx.message.text
-    ctx.sendMessage()
     await ctx.sendMessage("📬 Ваша заявка на регистрацию будет рассмотрена в ближайшее время администрацией проекта!")
     await ctx.sendMessage(`Новая заявка на вступление в команду! 🧑‍💻 \n\nОткуда вы о нас узнали: ${ctx.session.where} \n\nЕсть ли опыт в этой сфере: ${ctx.session.xp} \n\nСколько в день, готовы уделять времени: ${ctx.session.time} \n\nНик: ${ctx.session.dedess11} \n\n\nSID/${ctx.message.from.id}`, {
         chat_id: -877968087,
